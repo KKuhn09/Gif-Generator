@@ -1,12 +1,16 @@
 //Initial buttons
-var button_subjects = ["john cena", "dogs", "cats"];
+var button_subjects = ["John Cena", "Dogs", "Cats"];
 //Creates and displays initial buttons
 function addButtons(name){
 	//Create the button
 	var newButton = $("<button>");
 	newButton.addClass("btn btn-primary");
-	newButton.attr("name", name);
 	newButton.text(name.toUpperCase());
+	//Create the names id
+	var name_id = name.toLowerCase();
+	name_id = name.split(" ");
+	name_id = name_id.join("+");
+	newButton.attr("id", name_id);
 	//Display the button
 	$("#button-area").append(newButton);
 }
@@ -15,14 +19,43 @@ function addNewButton(name){
 	//Create the button
 	var newButton = $("<button>");
 	newButton.addClass("btn btn-primary");
-	newButton.attr("name", name);
 	newButton.text(name.toUpperCase());
+	//Create the names id
+	var name_id = name.toLowerCase();
+	//If there are spaces
+	name_id = name.split(" ");
+	name_id = name_id.join("+");
+	newButton.attr("id", name_id);
 	//Clear input area
 	$("#gif-name").val("");
 	//Display the button
 	$("#button-area").append(newButton);
 }
-//Validate input
+//Display gifs
+function displayGifs(name){
+	//Using API key with Giphy, create the query
+	var query = "https://api.giphy.com/v1/gifs/search?api_key=eb3cf537b6b04f779b9e19c56fb9ed05&q="+name+"&limit=10&offset=0&rating=PG-13&lang=en";
+	//Query the Giphy API
+	$.ajax({
+		url: query,
+		data: {
+			format: "json"
+		},
+		success: function(data){
+			$("#gif-area").empty();
+			for(var i=0;i<data.data.length;i++){
+				var gif = $("<img>");
+				gif.attr("src", data.data[i].images.fixed_height_small_still.url);
+				console.log(gif);
+				$("#gif-area").append(gif);
+				$("#gif-area").append("<br>");
+			}
+		}
+	});
+}
+/*
+	Data Validation
+*/
 function validateInput(input){
 	//If search area is empty
 	if(input === ""){
@@ -66,4 +99,9 @@ $(document).ready(function(){
 			event.preventDefault();
 		}
 	});
+	//When a gif button is clicked
+	$("button").click(function(){
+		displayGifs($(this).attr("id"));
+	})
+
 });
