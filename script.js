@@ -41,20 +41,29 @@ function displayGifs(name){
 		data: {
 			format: "json"
 		},
-		success: function(data){
+		success: function(res){
+			//Clear the div in case previous gifs were displayed
 			$("#gif-area").empty();
-			for(var i=0;i<data.data.length;i++){
+			//For each gif data was grabbed
+			for(var i=0;i<res.data.length;i++){
+				//Create img tag where gif will be displayed
 				var gif = $("<img>");
+				//Create p tag where rating will be displayed
 				var rating = $("<p>");
-				gif.attr("src", data.data[i].images.fixed_height_small_still.url);
-				console.log(gif);
+				//Display the still image of the gif
+				gif.attr({src: res.data[i].images.fixed_height_small_still.url, "data-toggle": res.data[i].images.fixed_height_small.url});
 				$("#gif-area").append(gif);
-				rating.append("Rating: "+data.data[i].rating);
+				//Display the rating
+				rating.append("Rating: "+res.data[i].rating);
 				$("#gif-area").append(rating);
 				$("#gif-area").append("<br>");
 			}
 		}
 	});
+}
+//Toggle the gif (not playing/playing)
+function toggleGif(gif){
+	console.log("something");
 }
 /*
 	Data Validation
