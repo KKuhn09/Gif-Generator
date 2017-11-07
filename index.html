@@ -1,101 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en">	
 <head>
-  <meta charset="utf-8">
-  <title>GifTastic</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<meta charset="utf-8">
+	<title>Gif Generator</title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> <!--jQuery CDN-->
 </head>
-
 <body>
+	<div class="container-fluid">
+		<div class="row">
+			<!--Where buttons will be displayed-->
+			<div class="col-sm-6" id="button-area"></div>
+			<!--Form area to add a new gif button-->
+			<div class="col-sm-6">
+				<form id="form-1">
+					<div class="form-group">
+						<label for="gif-search">Add a new gif button:</label>
+						<input type="text" class="form-control" id="gif-name" placeholder="Enter button name here"><br>
+						<button type="submit" class="btn btn-default" id="add-gif">Add</button>
+					</div>
+				</form>
+			</div>
 
-<div class="container">
-    
-  <!-- Where the buttons will go -->
-  <div class="row">
-    <div class="col-lg-12">
-      <div id="buttons-view"></div>
-    </div>
-  </div>
+		</div>
+	</div>
 
-  <div class="row">
-
-    <div class="col-lg-8">
-      <div id="movies-view"></div>
-    </div>
-
-    <div class="col-lg-4">
-      <form id="creature-form">
-
-        <label for="movie-input">Enter a creature that lives in the water</label>
-        <input type="text" id="movie-input"><br>
-        <input id="add-movie" type="submit" value="Submit">
-
-      </form>
-    </div>
-
-  </div>
-</div>
-
-<script type="text/javascript">
-
-  var topics = ["Dolphin", "Turtle", "Whale", "Shark", "Snail", "Anenome", "Crab", "Lobster"];
-
-  function displayGif() {
-
-    var topic = $(this).attr("data-name");
-    var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=eb3cf537b6b04f779b9e19c56fb9ed05&q=" + topic + "&limit=1&offset=0&rating=G&lang=en";
-
-    $.ajax({
-      url: queryURL,
-      method: "GET"
-    }).done(function(response) {
-
-      console.log(response.data);
-      console.log(queryURL);
-
-      //Need to query the database and retrieve Rating & Gif of 10 gifs returned from search
-
-    });
-
-  }
-
-  // Function for displaying sea creature buttons
-  function renderButtons() {
-
-    $("#buttons-view").empty();
-
-    // Looping through the array of topics
-    for (var i = 0; i < topics.length; i++) {
-
-      //Creates button and stores reference in variable a
-      var a = $("<button>");
-      //Passes the class, attribute, and text into the <button> through reference 'a'
-      a.addClass("movie");
-      a.attr("data-name", topics[i]);
-      a.text(topics[i]);
-      //Appends the <button> 'a' into #buttons-view
-      $("#buttons-view").append(a);
-
-    }
-  }
-
-  //Listens for the #add-movie id to be clicked, then executes the function
-  $("#add-movie").on("click", function(event) {
-
-    event.preventDefault();
-    var topic = $("#movie-input").val().trim();
-    topics.push(topic);
-    renderButtons();
-
-  });
-
-  $(document).on("click", ".movie", displayGif);
-
-  renderButtons();
-
-</script>
-
+	<script type="text/javascript" src="script.js"></script>
 </body>
 </html>
