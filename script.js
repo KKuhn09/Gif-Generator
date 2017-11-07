@@ -2,34 +2,26 @@
 var button_subjects = ["John Cena", "Dogs", "Cats"];
 //Creates and displays initial buttons
 function addButtons(name){
-	//Create the button
-	var newButton = $("<button>");
+	var newButton = $("<button>");  //Create the button
 	newButton.addClass("btn btn-primary");
 	newButton.text(name.toUpperCase());
-	//Create the names id
-	var name_id = name.toLowerCase();
-	name_id = name.split(" ");
+	var name_id = name.toLowerCase();  //Create the names id
+	name_id = name.split(" ");	//If there are spaces
 	name_id = name_id.join("+");
 	newButton.attr("id", name_id);
-	//Display the button
-	$("#button-area").append(newButton);
+	$("#button-area").append(newButton);  //Display the button
 }
 //Add a new gif button
 function addNewButton(name){
-	//Create the button
-	var newButton = $("<button>");
+	var newButton = $("<button>");	//Create the button
 	newButton.addClass("btn btn-primary");
 	newButton.text(name.toUpperCase());
-	//Create the names id
-	var name_id = name.toLowerCase();
-	//If there are spaces
-	name_id = name.split(" ");
+	var name_id = name.toLowerCase();	//Create the names id
+	name_id = name.split(" ");	//If there are spaces
 	name_id = name_id.join("+");
 	newButton.attr("id", name_id);
-	//Clear input area
-	$("#gif-name").val("");
-	//Display the button
-	$("#button-area").append(newButton);
+	$("#button-area").append(newButton);	//Display the button
+	$("#gif-name").val("");		//Clear input area
 }
 //Display gifs
 function displayGifs(name){
@@ -56,7 +48,6 @@ function displayGifs(name){
 				//Display the rating
 				rating.append("Rating: "+res.data[i].rating);
 				$("#gif-area").append(rating);
-				$("#gif-area").append("<br>");
 			}
 		}
 	});
@@ -80,7 +71,7 @@ function validateInput(input){
 		return false;
 	}
 	//Array with valid input characters
-	var validInputs = "abcdefghijklmnopqrstuvwxyz1234567890".split("");
+	var validInputs = "abcdefghijklmnopqrstuvwxyz1234567890 ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 	//Check each character of input
 	for(var i=0;i<input.length;i++){
 		//If a character in input does not exist in valid inputs
@@ -117,11 +108,11 @@ $(document).ready(function(){
 		}
 	});
 	//When a gif button is clicked
-	$("button").click(function(){
+	$("body").on("click", "#button-area button", function(){
 		//Display the gifs
 		displayGifs($(this).attr("id"));
 	});
-	//When a gif is clicked (using the body selector because the img is not in the DOM upon rendering the page)
+	//When a gif is clicked	
 	$("body").on("click", "img", (function(){
 		//Toggle the gif
 		toggleGif($(this));
