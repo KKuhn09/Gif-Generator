@@ -9,5 +9,6 @@ The application uses Javascript, jQuery, and AJAX to display 10 gifs based on th
 Highlights
 ----------
 * Uses AJAX to make API calls to the Giphy API
+* Gifs are togglable
 * Implements data validation
 
