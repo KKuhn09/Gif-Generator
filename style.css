@@ -1,0 +1,14 @@
+.div1{
+	margin-top:50px;
+}
+.title{
+	font-size: 500%;
+	font-weight: bold;
+}
+button{
+	margin: 5px;
+}
+.gif{
+	display:inline-block;
+	margin: 10px;
+}

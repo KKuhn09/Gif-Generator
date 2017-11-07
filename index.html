@@ -5,29 +5,42 @@
 	<title>Gif Generator</title>
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="style.css"> <!--External Styles-->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> <!--jQuery CDN-->
 </head>
 <body>
 	<div class="container-fluid">
-
-		<div class="row">
-			<!--Where buttons will be displayed-->
-			<div class="col-sm-6" id="button-area"></div>
-			<!--Form area to add a new gif button-->
-			<div class="col-sm-6">
-				<form id="form-1">
-					<div class="form-group">
-						<label for="gif-search">Add a new gif button:</label>
-						<input type="text" class="form-control" id="gif-name" placeholder="Enter button name here"><br>
-						<div id="error-message"></div><br>
-						<button type="submit" class="btn btn-primary" id="add-gif">Add</button>
-					</div>
-				</form>
+		<div class="div1">
+			<!--Title and info-->
+			<div class="row">
+				<h1 class="title text-center">Gif Generator</h1>
+			</div>
+			<div class="row">
+				<div class="col-sm-offset-2 col-sm-4">
+					<h1>Click a button to display its gifs!</h1>
+				</div>
+				<div class="col-sm-4">
+					<h1>Or, add a new button with a topic of your choice!</h1>
+				</div>
+			</div>
+			<div class="row">
+				<!--Where buttons will be displayed-->
+				<div class="col-sm-offset-2 col-sm-4" id="button-area"></div>
+				<!--Form area to add a new gif button-->
+				<div class="col-sm-4">
+					<form id="form-1">
+						<div class="form-group">
+							<input type="text" class="form-control" id="gif-name" placeholder="Enter button name here"><br>
+							<div id="error-message"></div>
+							<button type="submit" class="btn btn-primary" id="add-gif">Add</button>
+						</div>
+					</form>
+				</div>
 			</div>
 		</div>
 		<!--Where gifs will be displayed-->
 		<div class="row">
-			<div class="col-sm-6" id="gif-area"></div>
+			<div class="col-sm-offset-2 col-sm-8" id="gif-area"></div>
 		</div>
 	</div>
 

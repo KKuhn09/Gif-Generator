@@ -1,5 +1,5 @@
 //Initial buttons
-var button_subjects = ["John Cena", "Dogs", "Cats"];
+var button_subjects = ["Dogs", "Cats","John Cena", "Doge", "Dolphins"];
 //Creates and displays initial buttons
 function addButtons(name){
 	var newButton = $("<button>");  //Create the button
@@ -38,16 +38,17 @@ function displayGifs(name){
 			$("#gif-area").empty();
 			//For each gif data was grabbed
 			for(var i=0;i<res.data.length;i++){
+				var gifDiv = $("<div>").addClass("gif");
 				//Create img tag where gif will be displayed
 				var gif = $("<img>");
+				gif.attr({src: res.data[i].images.fixed_height_small_still.url, "data-toggle": res.data[i].images.fixed_height_small.url});
 				//Create p tag where rating will be displayed
 				var rating = $("<p>");
-				//Display the still image of the gif
-				gif.attr({src: res.data[i].images.fixed_height_small_still.url, "data-toggle": res.data[i].images.fixed_height_small.url});
-				$("#gif-area").append(gif);
-				//Display the rating
-				rating.html("Rating: "+res.data[i].rating);
-				$("#gif-area").append(rating);
+				rating.html("Rating: "+res.data[i].rating);//Display the rating
+				//Append <img> and <p> to the gifDiv
+				gifDiv.append(gif);
+				gifDiv.append(rating);
+				$("#gif-area").append(gifDiv);//Display gifDiv
 			}
 		},
 		type: "GET"
