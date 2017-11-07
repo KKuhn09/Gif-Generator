@@ -63,7 +63,12 @@ function displayGifs(name){
 }
 //Toggle the gif (not playing/playing)
 function toggleGif(gif){
-	console.log("something");
+	//Store the gifs current src
+	var currentToggle = gif.attr("src");
+	//Switch gifs src to its data-toggle
+	gif.attr("src", gif.attr("data-toggle"));
+	//Switch gifs data-toggle to the old src
+	gif.attr("data-toggle", currentToggle);
 }
 /*
 	Data Validation
@@ -113,7 +118,12 @@ $(document).ready(function(){
 	});
 	//When a gif button is clicked
 	$("button").click(function(){
+		//Display the gifs
 		displayGifs($(this).attr("id"));
-	})
-
+	});
+	//When a gif is clicked (using the body selector because the img is not in the DOM upon rendering the page)
+	$("body").on("click", "img", (function(){
+		//Toggle the gif
+		toggleGif($(this));
+	}));
 });
