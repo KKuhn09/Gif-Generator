@@ -46,10 +46,11 @@ function displayGifs(name){
 				gif.attr({src: res.data[i].images.fixed_height_small_still.url, "data-toggle": res.data[i].images.fixed_height_small.url});
 				$("#gif-area").append(gif);
 				//Display the rating
-				rating.append("Rating: "+res.data[i].rating);
+				rating.html("Rating: "+res.data[i].rating);
 				$("#gif-area").append(rating);
 			}
-		}
+		},
+		type: "GET"
 	});
 }
 //Toggle the gif (not playing/playing)
@@ -88,7 +89,7 @@ function errorMessage(){
 	//Clear input area
 	$("#gif-name").val("");
 	//Display the error message
-	$("#error-message").html("<p class='alert alert-danger'>Input can only contain letters A-Z and numbers 1-9");
+	$("#error-message").html("<p class='alert alert-danger'>Input can only contain letters A-Z and numbers 1-9<p>");
 	event.preventDefault();
 }
 
