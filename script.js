@@ -45,9 +45,12 @@ function displayGifs(name){
 			$("#gif-area").empty();
 			for(var i=0;i<data.data.length;i++){
 				var gif = $("<img>");
+				var rating = $("<p>");
 				gif.attr("src", data.data[i].images.fixed_height_small_still.url);
 				console.log(gif);
 				$("#gif-area").append(gif);
+				rating.append("Rating: "+data.data[i].rating);
+				$("#gif-area").append(rating);
 				$("#gif-area").append("<br>");
 			}
 		}
