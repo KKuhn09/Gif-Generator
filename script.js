@@ -12,7 +12,15 @@ function addButtons(name){
 }
 //Add a new gif button
 function addNewButton(name){
-	console.log(name);
+	//Create the button
+	var newButton = $("<button>");
+	newButton.addClass("btn btn-primary");
+	newButton.attr("name", name);
+	newButton.text(name);
+	//Clear input area
+	$("#gif-name").val("");
+	//Display the button
+	$("#button-area").append(newButton);
 }
 
 $(document).ready(function(){
@@ -24,7 +32,7 @@ $(document).ready(function(){
 	//When form-1 is submitted 
 	$("#form-1").submit(function(){
 		//Add a new button
-		addNewButton($("#gif-name").val();
+		addNewButton($("#gif-name").val());
 		event.preventDefault();
 	});
 });
